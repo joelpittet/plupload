@@ -277,7 +277,7 @@
 		getSize : function(node) {
 			return {
 				w : node.clientWidth || node.offsetWidth,
-				h : node.clientWidth || node.offsetWidth
+				h : node.clientHeight || node.offsetHeight
 			};
 		},
 
