@@ -207,6 +207,10 @@ package com.plupload {
 			var req:URLRequest, fileData:ByteArray, chunkData:ByteArray;
 			var urlStream:URLStream, url:String, file:File = this;
 
+			// Upload is cancelled, then stop everything
+			if (file._cancelled)
+				return;
+
 			// Slice out a chunk
 			chunkData = new ByteArray();
 
@@ -224,10 +228,6 @@ package com.plupload {
 			// Wait for response and dispatch it
 			urlStream.addEventListener(Event.COMPLETE, function(e:Event):void {
 				var response:String;
-
-				// Upload is cancelled, then stop everything
-				if (file._cancelled)
-					return;
 
 				response = urlStream.readUTFBytes(urlStream.bytesAvailable);
 
